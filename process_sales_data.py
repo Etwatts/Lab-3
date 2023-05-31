@@ -11,6 +11,8 @@ Parameters:
 import pandas as pd
 import sys 
 import os.path
+from datetime import date
+
 def main():
     sales_csv_path = get_sales_csv_path()
     orders_dir_path = create_orders_dir(sales_csv_path)
@@ -44,11 +46,17 @@ def create_orders_dir(sales_csv_path):
     Returns:
         str: Path of orders directory
     """
-    # TODO: Get directory in which sales data CSV file resides
-    # TODO: Determine the path of the directory to hold the order data files
-    # TODO: Create the orders directory if it does not already exist
-    # TODO: Return path of orders directory
-    return
+    # Get directory in which sales data CSV file resides
+    sales_csv_dir = os.path.dirname(sales_csv_path)
+    # Determine the path of the directory to hold the order data files
+    today = date.today().isoformat()
+    orders_dir = f'Orders_{today}'
+    orders_dir_path =os.path.join(sales_csv_dir, orders_dir)
+    # Create the orders directory if it does not already exist
+    if not os.path.isdir(orders_dir_path):
+        os.makedirs(orders_dir_path)
+    # Return path of orders directory
+    return(orders_dir_path)
 
 def process_sales_data(sales_csv_path, orders_dir_path):
     """Splits the sales data into individual orders and save to Excel sheets
