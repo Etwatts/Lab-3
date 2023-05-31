@@ -96,7 +96,7 @@ def process_sales_data(sales_csv_path, orders_dir_path):
 
         # Export the data to an Excel sheet
         worksheet_name = f'Order #{order_id}'
-        order_df.to_excel(order_excel_path, index=False, sheet_name=worksheet_name)
+        ##order_df.to_excel(order_excel_path, index=False, sheet_name=worksheet_name)
 
 
         
